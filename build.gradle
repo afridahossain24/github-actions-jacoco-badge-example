@@ -27,7 +27,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
 }
 
 shadowJar {
@@ -39,12 +38,10 @@ shadowJar {
     archiveName rootProject.name + '-' + rootProject.version + '.jar'
 }
 
-// TODO Specify Jacoco version
 jacoco {
     toolVersion = "0.8.7"
 }
 
-// TODO Configure Jacoco
 jacocoTestReport {
     dependsOn test
     reports {
