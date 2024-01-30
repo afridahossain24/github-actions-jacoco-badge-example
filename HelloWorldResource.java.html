@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HelloWorldResource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hello-friends</a> &gt; <a href="index.source.html" class="el_package">com.example.helloworld.resources</a> &gt; <span class="el_source">HelloWorldResource.java</span></div><h1>HelloWorldResource.java</h1><pre class="source lang-java linenums">package com.example.helloworld.resources;
+
+import com.codahale.metrics.annotation.Timed;
+import com.example.helloworld.api.Saying;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
+
+@Path(&quot;/hello-world&quot;)
+@Produces(MediaType.APPLICATION_JSON)
+public class HelloWorldResource {
+  private final String template;
+  private final String defaultName;
+  private final AtomicLong counter;
+
+<span class="fc" id="L21">  public HelloWorldResource(String template, String defaultName) {</span>
+<span class="fc" id="L22">    this.template = template;</span>
+<span class="fc" id="L23">    this.defaultName = defaultName;</span>
+<span class="fc" id="L24">    this.counter = new AtomicLong();</span>
+<span class="fc" id="L25">  }</span>
+
+  @GET
+  @Timed
+  public Saying sayHello(@QueryParam(&quot;name&quot;) Optional&lt;String&gt; name) {
+<span class="fc" id="L30">    final String value = String.format(template, name.orElse(defaultName));</span>
+<span class="fc" id="L31">    return new Saying(counter.incrementAndGet(), value);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

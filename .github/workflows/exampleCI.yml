@@ -36,6 +36,12 @@ jobs:
           run: |
             chmod +x gradlew
             ./gradlew test
+            
+        - name: Mutation testing
+          working-directory: .
+          run: |
+            chmod +x gradlew
+            ./gradlew pitest
 
         - name: Run Test Coverage
           run: ./gradlew jacocoTestReport
