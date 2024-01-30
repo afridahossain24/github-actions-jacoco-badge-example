@@ -1,4 +1,4 @@
-name: Awesome CI
+name: Jacoco tutorial
 
 on: [push]
 
